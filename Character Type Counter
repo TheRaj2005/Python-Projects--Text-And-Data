@@ -1,0 +1,31 @@
+# Receive User Input
+Sentance = input("This program can count the number of characters as well as the type of character. Enter a sentance to begin.")
+
+words = Sentance.lower().split()
+
+# Clean words of punctuation
+cleaned_words = []
+for word in words:
+    cleaned_word = word.strip("!?.:;")
+    cleaned_words.append(cleaned_word)
+
+vowels = 0
+consonants = 0
+digits = 0
+Total = vowels + consonants + digits
+
+# Count each type of character
+for word in cleaned_words:
+    for char in word:
+        if char in "aeiou":
+            vowels += 1
+        elif char.isalpha():
+            consonants += 1
+        elif char.isdigit():
+            digits += 1
+
+# Print results
+print("There are " + str(vowels) + " vowels")
+print("There are " + str(consonants) + " consonants")
+print("There are " + str(digits) + " digits")
+print("There are " + str(Total) + " characters")

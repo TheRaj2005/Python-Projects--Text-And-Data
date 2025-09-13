@@ -1,0 +1,30 @@
+# Read the file into memory
+f = open("PG13_Paragraph", "r", encoding="utf-8")
+lines = f.readlines()
+f.close()
+
+# Prepare word lists
+words = []
+for line in lines:
+    words.extend(line.split())
+
+# Strip words of puncuation
+strippedwords = []
+for word in words:
+    word = word.strip(";:.,!?\"\'")
+    strippedwords.append(word)
+
+# Define "Swear words"
+swearwords = ["idiot","damn","pissed","crap","jerk","crappy","hell"]
+
+# Replace Swear words with [Censored]
+cleanedWords = []
+for strippedword in strippedwords:
+    if strippedword in swearwords:
+        cleanedWords.append ("[Censored]")
+    else:
+        cleanedWords.append (strippedword)
+
+# Print cleanedwords
+for i in range(0, len(cleanedWords),10):
+    print(" ".join(cleanedWords[i:i+10]))

@@ -1,0 +1,75 @@
+# Read the file
+f = open("Government_Memo.txt","r", encoding="utf-8")
+lines = f.readlines()
+f.close()
+
+# Count blank lines
+i = 0
+for line in lines:
+    if line == "\n":
+        i += 1
+
+# Create Headings and slots for paragraphs
+Heading = []
+Body = [[] for _ in range(i+1)]
+
+# Extract Headings and individual body paragraphs
+
+j = -1
+for line in lines:
+    line = line.strip()
+    if line.startswith("[") and line.endswith("]"):
+        Heading.append(line)
+        j += 1
+    elif not line.startswith("[") and not line.endswith("]"):
+        Body[j].append(line)
+
+print("Headings:")
+print(Heading)
+print("")
+
+# Define suspicious words
+suspicious_words = ["operation", "operational", "activity", "exercise", "training", "schedule", "protocol", "directive", "authorization",
+"deployment", "transport", "shipment", "convoy", "facility", "fueling", "range", "classified", "restricted", "encrypted", "intercept",
+"unauthorized", "missile", "warhead", "target", "strike", "payload", "detonation", "breach", "sabotage", "covert", "surveillance",
+"intelligence"]
+
+# format paragraph and delete puncuation
+k = 0
+risk_factor = []
+for k in range(i+1):
+
+    puntuation = "!?;:.,\"'\n"
+    cleanedWords = []
+
+    paragraph = " ".join(Body[k])
+    words = paragraph.lower().split()
+    for word in words:
+        new_word = ""
+        for char in word:
+            if char not in puntuation:
+                new_word += char
+        cleanedWords.append(new_word)
+    words = cleanedWords
+# count suspicious words
+    l = 0
+    for word in suspicious_words:
+        if word in words:
+            l += 1
+            print("Paragraph " + str(k+1) + ": " + word)
+    risk_factor.append(l)
+    print("Paragraph " + str(k+1) + " has " + str(risk_factor[k]) + " suspicious words.")
+
+# Print output
+
+print("")
+print(risk_factor)
+
+print("Total Suspicious Words: " + str(sum(risk_factor)))
+
+if sum(risk_factor) < 2:
+    print("Not Important")
+elif sum(risk_factor) < 4:
+    print("Somewhat important")
+else:
+    print("Critically important")

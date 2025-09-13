@@ -1,0 +1,16 @@
+Sentence = input("Enter a sentence: ")
+words = Sentence.lower().split() #splits based on spaces
+
+cleaned_words = []
+
+for word in words:
+    cleaned_word = word.strip("!?.:;")
+    cleaned_words.append(cleaned_word)
+
+reversed_words = []
+
+for word in cleaned_words:
+    reversed_word = word[::-1]
+    reversed_words.append(reversed_word)
+
+print(reversed_words)

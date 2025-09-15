@@ -1,9 +1,20 @@
 This is a repo of my Python Projects as I learn Python for Data Analysis. At this stage I am learning text and data parsing as well as data structures. 
 
 Project 1:
+Deliverables: Character Type Counter
+- Ability to count the number of characters
+- Ability to count the numberof each type of character
 
-Project 2:
+Project 2: Word Censorer
+Deliverables: 
+- Ability to read a file, censor bad words, and print the cleaned contents
 
 Project 3:
+Deliverables: 
+- The ability to reverse all the words in a sentance. 
 
 Project 4:
+Deliverables:
+- The ability to count the number of suspicious words in a .txt file
+- The ability to view that number by paragraph, and see which words were found
+- The ability to assign a risk score based off of the number of suspicious words found
